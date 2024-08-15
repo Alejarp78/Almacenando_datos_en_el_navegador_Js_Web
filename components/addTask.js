@@ -1,5 +1,7 @@
 import checkComplete from './checkComplete.js';
 import deleteIcon from './deleteIcon.js';
+import { readTasks } from './readTasks.js';
+
 
 export const addTask = (evento) => {
     evento.preventDefault();
@@ -9,6 +11,10 @@ export const addTask = (evento) => {
     const values = input.value;
     const date = calendar.value;
     const dateFormat = moment(date).format('DD/MM/YYYY');
+
+    if (values === ""  || date === "") {
+      return 
+    };
     //const taskList = [];
     //const taskList = localStorage.getItem('tasks')  || [];
     // Recupera la lista de tareas desde localStorage y convierte la cadena en un arreglo
@@ -22,14 +28,19 @@ export const addTask = (evento) => {
         dateFormat,
     };
 
+    list.innerHTML = '';
+
     //taskList.push(taskObj);
   
     const taskList = JSON.parse(localStorage.getItem('tasks')) || [];
     taskList.push(taskObj);
     localStorage.setItem('tasks', JSON.stringify(taskList));
     //console.log(dateFormat);
+
+    readTasks();
+/* 
     const task = createTask(taskObj);
-    list.appendChild(task);
+    list.appendChild(task); */
   };
 
   export const createTask = ({values, dateFormat}) => {
