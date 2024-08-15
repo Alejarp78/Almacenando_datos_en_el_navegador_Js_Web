@@ -9,6 +9,7 @@ export const readTasks = () => {
 
     const tasksList = JSON.parse(localStorage.getItem("tasks")) || [];
     const dates = uniqueDates(tasksList);
+    //orderDates(dates);
     //console.log(tasksList);
     //console.log(dates);
 
@@ -27,7 +28,7 @@ export const readTasks = () => {
         });
     });
 
-    console.log(dateElement("13/08/2024"));
+    //console.log(dateElement("13/08/2024"));
 
 
 
